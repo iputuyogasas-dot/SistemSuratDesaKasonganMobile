@@ -46,3 +46,4 @@ app.*.map.json
 
 # Ignore Documentations
 /DOCS/
+PANDUAN_FINAL.txt
