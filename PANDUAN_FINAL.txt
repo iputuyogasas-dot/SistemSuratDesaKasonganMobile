@@ -1,0 +1,243 @@
+═══════════════════════════════════════════════════════════════
+   PANDUAN INSTALASI & CARA PENGGUNAAN
+   Aplikasi Pengelolaan Surat Desa Kasongan
+   Flutter + Android Studio (Tanpa Impeller)
+═══════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ BAGIAN A — PERSIAPAN PROJECT (LAKUKAN SEKALI)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[A1] BUAT PROJECT FLUTTER BARU
+  1. Buka Android Studio
+  2. Klik New Flutter Project
+  3. Isi dengan TEPAT seperti ini:
+       Project name     : surat_desa_kasongan
+       Project location : D:\
+       Organization     : com.example
+       Android language : Kotlin
+       Platforms        : centang Android saja
+  4. Klik Create, tunggu project selesai dibuat
+
+[A2] COPY FILE DARI ZIP
+  Buka File Explorer, masuk ke D:\surat_desa_kasongan\
+  Copy dari ZIP hanya 3 hal berikut:
+    a) Folder lib/
+       → Hapus dulu isi lib/ yang lama
+       → Copy seluruh isi lib/ dari ZIP ke sana
+    b) File pubspec.yaml
+       → Ganti/Replace file pubspec.yaml yang lama
+    c) File test/widget_test.dart
+       → Ganti/Replace file widget_test.dart yang lama
+  
+  ⚠ JANGAN ganti folder android/ — biarkan yang asli dari Flutter
+
+[A3] NONAKTIFKAN IMPELLER (WAJIB)
+  Buka file: android/app/src/main/AndroidManifest.xml
+  Cari baris <application dan tambahkan di dalamnya:
+
+    <meta-data
+        android:name="io.flutter.embedding.android.EnableImpeller"
+        android:value="false" />
+
+  Sehingga menjadi seperti ini:
+
+    <application
+        android:label="surat_desa_kasongan"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="io.flutter.embedding.android.EnableImpeller"
+            android:value="false" />
+
+[A4] INSTALL DEPENDENSI
+  1. Di Android Studio, klik View → Tool Windows → Terminal
+  2. Ketik perintah berikut lalu Enter:
+       flutter pub get
+  3. Tunggu hingga muncul tulisan: Got dependencies!
+
+[A5] TAMBAH RAM EMULATOR
+  1. Klik Tools → Device Manager
+  2. Klik ikon pensil ✏ di samping Pixel 10
+  3. Klik Show Advanced Settings
+  4. Cari bagian RAM → ubah ke 4096 MB
+  5. Klik Finish
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ BAGIAN B — CARA MENJALANKAN APLIKASI (SETIAP KALI PAKAI)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[B1] HIDUPKAN EMULATOR
+  1. Klik Tools → Device Manager
+  2. Klik tombol ▶ di samping Pixel 10
+  3. Tunggu emulator menyala hingga muncul tampilan home screen Android
+     (biasanya 1-2 menit)
+
+[B2] JALANKAN APLIKASI
+  1. Pastikan emulator Pixel 10 sudah menyala
+  2. Buka terminal di Android Studio:
+     View → Tool Windows → Terminal
+  3. Ketik perintah berikut lalu Enter:
+       flutter run --no-enable-impeller
+  4. Tunggu proses build selesai (pertama kali 5-10 menit)
+  5. Aplikasi akan terbuka otomatis di emulator
+
+  ⚠ PENTING: Selalu gunakan perintah flutter run --no-enable-impeller
+             Jangan klik tombol Run ▶ biasa karena akan crash
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ BAGIAN C — CARA PENGGUNAAN APLIKASI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[1] MEMBUKA APLIKASI
+    → Muncul Splash Screen "DESA KASONGAN" dengan animasi loading
+    → Setelah sekitar 2-3 detik otomatis masuk ke halaman Beranda
+
+[2] HALAMAN BERANDA
+    → Tampil header biru gelap dengan 4 statistik:
+         Total | Menunggu | Diproses | Selesai
+    → Di bawah header ada kotak pencarian dan chip filter status
+    → Di bawahnya tampil daftar semua surat yang pernah diajukan
+    → Tombol biru "Buat Surat" ada di pojok kanan bawah layar
+
+[3] MENGAJUKAN SURAT BARU (TAMBAH DATA)
+    a) Tap tombol "Buat Surat" di kanan bawah layar
+    b) Isi form yang muncul:
+         Nama Lengkap  → ketik nama warga, minimal 3 huruf
+         NIK           → ketik 16 digit angka NIK warga
+         Jenis Surat   → tap dropdown, pilih jenis surat yang sesuai
+         Keperluan     → jelaskan tujuan pembuatan surat (min. 10 huruf)
+         Keterangan    → boleh dikosongkan, opsional
+    c) Tap tombol "Ajukan Surat" di bagian bawah form
+    d) Jika berhasil muncul notifikasi hijau "Surat berhasil diajukan!"
+    e) Nomor surat dibuat otomatis, contoh: 001/DS-KSG/05/2026
+    f) Surat masuk ke daftar dengan status Menunggu (warna oranye)
+
+    ⚠ Validasi form:
+       - Nama kosong atau kurang dari 3 huruf → tidak bisa submit
+       - NIK bukan 16 digit → tidak bisa submit
+       - Jenis surat belum dipilih → tidak bisa submit
+       - Keperluan kurang dari 10 huruf → tidak bisa submit
+
+[4] MELIHAT DAFTAR SURAT
+    → Semua surat tampil di halaman Beranda dalam bentuk kartu
+    → Setiap kartu berisi:
+         Nomor surat, Jenis surat, Nama pemohon,
+         NIK, Tanggal pengajuan, Status surat
+    → Status ditampilkan dengan warna berbeda:
+         Oranye  = Menunggu
+         Biru    = Diproses
+         Hijau   = Selesai
+
+[5] MENCARI SURAT
+    → Tap kotak pencarian di bagian atas halaman Beranda
+    → Ketik salah satu dari:
+         Nama pemohon / NIK / Nomor surat / Jenis surat
+    → Hasil pencarian muncul otomatis saat mengetik (real-time)
+    → Hapus teks pencarian untuk kembali ke daftar penuh
+
+[6] FILTER SURAT BERDASARKAN STATUS
+    → Di bawah kotak pencarian ada 4 pilihan chip filter:
+         Semua | Menunggu | Diproses | Selesai
+    → Tap salah satu chip untuk memfilter daftar surat
+    → Chip yang dipilih akan berubah warna menjadi lebih terang
+    → Tap "Semua" untuk menampilkan kembali semua surat
+
+[7] MELIHAT DETAIL SURAT
+    → Tap kartu surat mana saja di daftar
+    → Halaman Detail Surat menampilkan:
+         - Nomor surat dan jenis surat (di header biru)
+         - Badge status dengan warna sesuai
+         - Informasi Pemohon: nama lengkap dan NIK
+         - Detail Surat: jenis, keperluan, keterangan, tanggal
+         - Timeline Status visual:
+           (Menunggu) ——— (Diproses) ——— (Selesai)
+           Lingkaran yang sudah tercapai akan berwarna
+
+[8] MENGUBAH STATUS SURAT
+    a) Buka halaman Detail Surat (tap kartu surat)
+    b) Tap tombol biru "Update Status Surat" di bagian bawah
+    c) Muncul dialog pilihan status:
+         ○ Menunggu
+         ○ Diproses
+         ○ Selesai
+    d) Pilih status yang baru
+    e) Tap tombol "Simpan"
+    f) Muncul notifikasi hijau konfirmasi berhasil
+    g) Badge status dan timeline langsung berubah
+
+[9] MENGHAPUS SURAT
+    Cara A — dari halaman Beranda:
+      → Tap ikon tempat sampah di pojok kanan bawah kartu surat
+      → Muncul dialog konfirmasi "Hapus Surat?"
+      → Tap "Hapus" untuk konfirmasi
+      → Surat hilang dari daftar
+
+    Cara B — dari halaman Detail Surat:
+      → Tap ikon tempat sampah di pojok kanan atas (AppBar)
+      → Muncul dialog konfirmasi "Hapus Surat?"
+      → Tap "Hapus" untuk konfirmasi
+      → Otomatis kembali ke halaman Beranda
+
+[10] HALAMAN RIWAYAT
+    → Tap ikon "Riwayat" di navigation bar bagian bawah (kanan)
+    → Tampil 3 tab di bagian atas:
+         Menunggu (n) | Diproses (n) | Selesai (n)
+    → n = jumlah surat di setiap status
+    → Tap tab untuk melihat daftar surat sesuai statusnya
+    → Tap kartu surat untuk melihat detail
+    → Untuk kembali ke Beranda tap ikon "Beranda" di navigation bar
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ BAGIAN D — TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ Aplikasi crash / Lost connection to device
+   → Pastikan selalu pakai: flutter run --no-enable-impeller
+   → Pastikan RAM emulator sudah 4096 MB
+   → Restart emulator lalu coba lagi
+
+❌ flutter pub get gagal
+   → Periksa koneksi internet
+   → Coba lagi beberapa saat kemudian
+
+❌ Gradle build gagal
+   → Ketik di terminal:
+        flutter clean
+        flutter pub get
+        flutter run --no-enable-impeller
+
+❌ Emulator tidak muncul di pilihan device
+   → Pastikan emulator sudah dihidupkan via Tools → Device Manager
+   → Tunggu hingga home screen Android muncul di emulator
+
+❌ Muncul garis kuning-hitam di tepi layar
+   → Itu tanda overflow (konten terlalu besar)
+   → Tidak mempengaruhi fungsi aplikasi
+   → Cukup abaikan untuk keperluan demo/presentasi
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ CATATAN PENTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Data surat tersimpan PERMANEN di emulator menggunakan
+  SharedPreferences — tidak hilang walau aplikasi ditutup
+
+• Nomor surat format otomatis: NNN/DS-KSG/MM/YYYY
+  Contoh: 001/DS-KSG/05/2026
+
+• Aplikasi hanya bisa portrait (vertikal)
+
+• Arsitektur kode: MVC
+    Model      → lib/models/surat_model.dart
+    View       → lib/views/screens/ dan lib/views/widgets/
+    Controller → lib/controllers/surat_controller.dart
+    Utils      → lib/utils/
+
+• Perintah run yang benar (SELALU gunakan ini):
+    flutter run --no-enable-impeller

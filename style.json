@@ -1,0 +1,75 @@
+{
+  "name": "Everglo Green Theme",
+  "theme": "light",
+  "colors": {
+    "primary": "#5DB075",
+    "primaryDark": "#48955F",
+    "secondary": "#E8F5E9",
+    "background": "#F6F8F9",
+    "surface": "#FFFFFF",
+    "surfaceVariant": "#F4F6F6",
+    "textPrimary": "#212121",
+    "textSecondary": "#8E8E93",
+    "success": "#5DB075",
+    "warning": "#F5A623",
+    "error": "#FF6B6B",
+    "info": "#4A90E2",
+    "border": "#E5E5EA"
+  },
+  "gradients": {
+    "primaryGradient": ["#67C381", "#5DB075"]
+  },
+  "typography": {
+    "fontFamily": "Poppins",
+    "h1": {
+      "fontSize": 26,
+      "fontWeight": 700,
+      "color": "#212121"
+    },
+    "h2": {
+      "fontSize": 20,
+      "fontWeight": 600,
+      "color": "#212121"
+    },
+    "h3": {
+      "fontSize": 16,
+      "fontWeight": 600,
+      "color": "#212121"
+    },
+    "bodyText": {
+      "fontSize": 14,
+      "fontWeight": 400,
+      "color": "#8E8E93"
+    },
+    "buttonText": {
+      "fontSize": 16,
+      "fontWeight": 600,
+      "color": "#FFFFFF"
+    },
+    "caption": {
+      "fontSize": 12,
+      "fontWeight": 500,
+      "color": "#8E8E93"
+    }
+  },
+  "shapes": {
+    "cardBorderRadius": 24.0,
+    "buttonBorderRadius": 30.0,
+    "inputBorderRadius": 16.0,
+    "badgeBorderRadius": 8.0
+  },
+  "spacing": {
+    "screenPadding": 24.0,
+    "elementSpacing": 16.0,
+    "cardPadding": 20.0
+  },
+  "shadows": {
+    "softShadow": {
+      "color": "rgba(0, 0, 0, 0.04)",
+      "blurRadius": 15.0,
+      "spreadRadius": 0.0,
+      "offsetX": 0.0,
+      "offsetY": 8.0
+    }
+  }
+}
